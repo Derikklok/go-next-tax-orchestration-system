@@ -23,7 +23,7 @@ func greetUser(name string, age int) {
 }
 
 func mergeConflixTest(){
-	fmt.Println("Printing from console...")
+	greetUser("new user",25)
 }
 
 func main() {
