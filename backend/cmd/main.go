@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 // var has gloabl scope
 var name string = "sachin"
@@ -23,4 +28,15 @@ func main() {
 	fmt.Println(name)
 	fmt.Println(x)
 	greetUser("pasiya", 25)
+
+	//initialize gin
+	r := gin.Default()
+
+	r.GET("/", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{
+			"message": "Hello World!",
+		})
+	})
+
+	r.Run(":8080")
 }

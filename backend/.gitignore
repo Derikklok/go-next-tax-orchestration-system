@@ -23,3 +23,10 @@ tmp/
 .env.*
 !.env.example
 
+# .gitignore
+/bin/
+*.exe
+vendor/
+
+./build
+
