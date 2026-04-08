@@ -22,12 +22,17 @@ func greetUser(name string, age int) {
 	fmt.Println("My name is ", name, " and ", " I'm ", age)
 }
 
+func mergeConflixTest(){
+	fmt.Println("Printing from console...")
+}
+
 func main() {
 	x := 78
 	printValues()
 	fmt.Println(name)
 	fmt.Println(x)
 	greetUser("pasiya", 25)
+	mergeConflixTest()
 
 	//initialize gin
 	r := gin.Default()
