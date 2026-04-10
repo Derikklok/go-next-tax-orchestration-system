@@ -1,4 +1,4 @@
-module github.com/Derikklok/student-management
+module github.com/Derikklok/task-management
 
 go 1.25.4
 
