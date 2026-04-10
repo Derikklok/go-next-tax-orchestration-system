@@ -8,13 +8,13 @@
 
 // Material 3 uses tonal palettes (0-100), so we override key green tones
 // while preserving the full required palette shape from mat.$green-palette.
-$brand-green-primary: map.merge(
-  mat.$green-palette,
+$brand-blue-primary: map.merge(
+  mat.$blue-palette,
   (
-    30: #388E3C,
-    35: #43A047,
-    40: #4CAF50,
-    50: #66BB6A,
+    30: #1e1d39,
+    35: #1b1b82,
+    40: #2639c3,
+    50: #5242e8,
     90: #E8F5E9,
   )
 );
@@ -24,7 +24,7 @@ html {
   @include mat.theme(
     (
       color: (
-        primary: $brand-green-primary,
+        primary: $brand-blue-primary,
         tertiary: mat.$blue-palette,
       ),
       typography: Roboto,
