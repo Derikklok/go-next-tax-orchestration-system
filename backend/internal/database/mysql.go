@@ -3,7 +3,7 @@ package database
 import (
 	"fmt"
 
-	"github.com/Derikklok/task-management/config"
+	"github.com/Derikklok/task-management/internal/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
