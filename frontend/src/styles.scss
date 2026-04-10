@@ -3,14 +3,28 @@
 // components according to the Material 3 design spec.
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
+@use 'sass:map';
 @use '@angular/material' as mat;
+
+// Material 3 uses tonal palettes (0-100), so we override key green tones
+// while preserving the full required palette shape from mat.$green-palette.
+$brand-green-primary: map.merge(
+  mat.$green-palette,
+  (
+    30: #388E3C,
+    35: #43A047,
+    40: #4CAF50,
+    50: #66BB6A,
+    90: #E8F5E9,
+  )
+);
 
 html {
   height: 100%;
   @include mat.theme(
     (
       color: (
-        primary: mat.$azure-palette,
+        primary: $brand-green-primary,
         tertiary: mat.$blue-palette,
       ),
       typography: Roboto,
