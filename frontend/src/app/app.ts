@@ -6,7 +6,7 @@ import { Button } from "./shared/components/ui/button/button";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSlideToggle, MatButton, Button],
+  imports: [RouterOutlet, MatButton, Button],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
