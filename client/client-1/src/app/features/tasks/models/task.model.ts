@@ -11,3 +11,13 @@ export interface TaskListResponse{
     data: Task[];
     total:number;
 }
+
+export interface CreateTaskRequest {
+  title: string;
+  description: string;
+}
+
+export interface ApiResponse<T> {
+  data: T;
+  message?: string;
+}

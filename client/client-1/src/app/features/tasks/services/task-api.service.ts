@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment.development";
 import { Observable } from "rxjs";
-import { TaskListResponse } from "../models/task.model";
+import { ApiResponse, CreateTaskRequest, Task, TaskListResponse } from "../models/task.model";
 
 @Injectable({
     providedIn:'root'
@@ -17,4 +17,9 @@ export class TaskApiService{
     getTasks() : Observable<TaskListResponse>{
         return this.http.get<TaskListResponse>(this.baseUrl);
     }
+
+    // Create a task
+    createTask(payload: CreateTaskRequest) {
+  return this.http.post<ApiResponse<Task>>(this.baseUrl, payload);
+}
 }

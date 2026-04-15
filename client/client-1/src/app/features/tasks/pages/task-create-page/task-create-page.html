@@ -1,1 +1,12 @@
-<p>task-create-page works!</p>
+<section class="task-create-page">
+
+  <div class="page-header">
+    <h1>Create Task</h1>
+    <p>Add a new task to your system</p>
+  </div>
+
+  <app-task-form
+    (submitted)="onCreateTask($event)"
+  />
+
+</section>
