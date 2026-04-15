@@ -1,0 +1,19 @@
+.task-card {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: white;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .status {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    background: #eef2ff;
+  }
+}

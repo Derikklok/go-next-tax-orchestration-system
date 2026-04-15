@@ -1,0 +1,22 @@
+
+<div class="task-list-page">
+
+    <div class="page-header">
+        <div>
+            <h1>Details about total tasks</h1>
+            <p>Total of {{total()}} tasks retrieved.</p>
+        </div>
+
+        <a routerLink="/tasks/create" class="create-btn">
+        Create Task
+    </a>
+    </div>
+
+    <div class="task-grid">
+        @for (task of tasks(); track task.id) {
+            <app-task-card [task]="task"/>
+        }
+    </div>
+    
+    
+</div>
