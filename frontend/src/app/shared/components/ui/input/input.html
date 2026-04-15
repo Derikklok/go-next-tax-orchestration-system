@@ -1,0 +1,49 @@
+<mat-form-field appearance="outline" [class.error]="hasError">
+  <mat-label>{{ label }}</mat-label>
+
+  <!-- Text Input -->
+  <input
+    *ngIf="!isTextarea"
+    #textInput
+    matInput
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [required]="required"
+    [attr.maxlength]="maxLength"
+    [attr.minlength]="minLength"
+    (input)="onValueChange(textInput.value)"
+    (blur)="onBlur()"
+    (focus)="onFocus()" />
+
+  <!-- Textarea Input -->
+  <textarea
+    *ngIf="isTextarea"
+    #textAreaInput
+    matInput
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [required]="required"
+    [attr.maxlength]="maxLength"
+    [attr.minlength]="minLength"
+    [rows]="rows"
+    (input)="onValueChange(textAreaInput.value)"
+    (blur)="onBlur()"
+    (focus)="onFocus()"></textarea>
+
+  <!-- Icon -->
+  <mat-icon matSuffix *ngIf="icon">{{ icon }}</mat-icon>
+
+  <!-- Error Message -->
+  <mat-error *ngIf="hasError">{{ error }}</mat-error>
+
+  <!-- Hint Text -->
+  <mat-hint *ngIf="hint && !hasError">{{ hint }}</mat-hint>
+
+  <!-- Character Count -->
+  <mat-hint *ngIf="maxLength" align="end">{{ value.length }}/{{ maxLength }}</mat-hint>
+</mat-form-field>

@@ -1,0 +1,29 @@
+.page-container {
+  width: 100%;
+  max-width: var(--max-width, 1200px);
+  padding: var(--padding, 24px);
+  margin: 0 auto;
+  box-sizing: border-box;
+  animation: fadeIn 0.3s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  // Responsive breakpoints
+  @media (max-width: 768px) {
+    padding: var(--padding, 16px);
+    --max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    padding: var(--padding, 12px);
+  }
+}

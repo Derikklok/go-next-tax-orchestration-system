@@ -1,4 +1,95 @@
-button {
-  border-radius: 8px;
-  font-weight: 500;
+.app-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 64px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-weight: 650;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: inherit;
+
+  // Raised variant (default)
+  &.btn-raised {
+    box-shadow: 0 8px 18px rgba(18, 62, 147, 0.25);
+    
+    &:hover:not(:disabled) {
+      box-shadow: 0 10px 20px rgba(18, 62, 147, 0.33);
+      transform: translateY(-2px);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // Flat variant
+  &.btn-flat {
+    background-color: transparent;
+    box-shadow: none;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(63, 81, 181, 0.08);
+    }
+  }
+
+  // Basic variant (text button)
+  &.btn-basic {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0 8px;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(63, 81, 181, 0.08);
+    }
+  }
+
+  // Stroked variant
+  &.btn-stroked {
+    border: 1px solid rgba(27, 75, 177, 0.22);
+    background-color: transparent;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(63, 81, 181, 0.08);
+    }
+  }
+
+  // Full width
+  &.full-width {
+    width: 100%;
+    display: flex;
+  }
+
+  // Disabled state
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  // Icon styling
+  .button-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  // Label styling
+  .button-label {
+    white-space: nowrap;
+  }
+
+  // Loading spinner
+  .button-spinner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

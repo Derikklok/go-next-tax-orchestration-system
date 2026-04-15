@@ -1,3 +1,57 @@
-<button mat-raised-button [color]="color">
-  {{ label }}
-</button>
+<ng-container [ngSwitch]="variant">
+  <button
+    *ngSwitchCase="'raised'"
+    mat-raised-button
+    [attr.type]="type"
+    [color]="color"
+    [disabled]="disabled || loading"
+    [class.full-width]="fullWidth"
+    [class]="buttonClass"
+    (click)="onClick()"
+    class="app-button">
+    <mat-icon *ngIf="icon && !loading" class="button-icon">{{ icon }}</mat-icon>
+    <span class="button-label">{{ label }}</span>
+  </button>
+
+  <button
+    *ngSwitchCase="'flat'"
+    mat-flat-button
+    [attr.type]="type"
+    [color]="color"
+    [disabled]="disabled || loading"
+    [class.full-width]="fullWidth"
+    [class]="buttonClass"
+    (click)="onClick()"
+    class="app-button">
+    <mat-icon *ngIf="icon && !loading" class="button-icon">{{ icon }}</mat-icon>
+    <span class="button-label">{{ label }}</span>
+  </button>
+
+  <button
+    *ngSwitchCase="'basic'"
+    mat-button
+    [attr.type]="type"
+    [color]="color"
+    [disabled]="disabled || loading"
+    [class.full-width]="fullWidth"
+    [class]="buttonClass"
+    (click)="onClick()"
+    class="app-button">
+    <mat-icon *ngIf="icon && !loading" class="button-icon">{{ icon }}</mat-icon>
+    <span class="button-label">{{ label }}</span>
+  </button>
+
+  <button
+    *ngSwitchCase="'stroked'"
+    mat-stroked-button
+    [attr.type]="type"
+    [color]="color"
+    [disabled]="disabled || loading"
+    [class.full-width]="fullWidth"
+    [class]="buttonClass"
+    (click)="onClick()"
+    class="app-button">
+    <mat-icon *ngIf="icon && !loading" class="button-icon">{{ icon }}</mat-icon>
+    <span class="button-label">{{ label }}</span>
+  </button>
+</ng-container>

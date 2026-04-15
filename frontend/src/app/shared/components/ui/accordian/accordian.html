@@ -1,1 +1,21 @@
-<p>accordian works!</p>
+<mat-accordion [multi]="multi" [hideToggle]="hideToggle" class="app-accordion">
+  <mat-expansion-panel
+    *ngFor="let item of items; trackBy: trackByItemId"
+    [disabled]="item.disabled"
+    class="accordion-item">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ item.title }}
+      </mat-panel-title>
+      <mat-panel-description *ngIf="item.description" class="accordion-description">
+        {{ item.description }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div class="accordion-content">
+      {{ item.content }}
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+

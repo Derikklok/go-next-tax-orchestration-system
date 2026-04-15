@@ -1,0 +1,50 @@
+app-input {
+  display: block;
+  margin-bottom: 16px;
+  width: 100%;
+
+  mat-form-field {
+    width: 100%;
+    
+    &.error {
+      mat-label {
+        color: var(--mat-sys-error) !important;
+      }
+    }
+
+    // Outline appearance styling
+    .mdc-text-field--outlined {
+      border-radius: 4px;
+    }
+
+    // Floating label styling
+    ::ng-deep {
+      .mdc-floating-label {
+        transition: all 0.2s ease;
+      }
+
+      .mdc-text-field--focused .mdc-floating-label {
+        color: var(--mat-sys-primary);
+      }
+
+      .mdc-text-field--invalid .mdc-floating-label {
+        color: var(--mat-sys-error);
+      }
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  mat-error {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  mat-hint {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}

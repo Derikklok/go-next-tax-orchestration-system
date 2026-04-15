@@ -1,0 +1,72 @@
+<app-card
+  [title]="task.title"
+  [subtitle]="task.description"
+  [elevation]="1"
+  [hoverable]="true"
+  [ngClass]="getStatusClass(task.status)">
+  <div class="task-content">
+    <div class="task-meta">
+      <span class="task-id">#{{ task.id || '-' }}</span>
+    </div>
+
+    <!-- Status Badge -->
+    <div class="task-status">
+      <mat-chip-set aria-label="Task status">
+        <mat-chip
+          [highlighted]="true"
+          [color]="getStatusColor(task.status)"
+          class="status-chip">
+          <mat-icon matChipAvatar>{{ getStatusIcon(task.status) }}</mat-icon>
+          {{ task.status | titlecase }}
+        </mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <!-- Task Dates -->
+    <div class="task-dates" *ngIf="task.createdAt || task.updatedAt">
+      <small class="date-info" *ngIf="task.createdAt">
+        Created: {{ task.createdAt | date : 'short' }}
+      </small>
+      <small class="date-info divider" *ngIf="task.createdAt && task.updatedAt">•</small>
+      <small class="date-info" *ngIf="task.updatedAt">
+        Updated: {{ task.updatedAt | date : 'short' }}
+      </small>
+    </div>
+
+    <!-- Task Description -->
+    <p class="task-description">{{ task.description }}</p>
+  </div>
+
+  <!-- Actions -->
+  <div card-actions class="task-actions">
+    <!-- Status Menu -->
+    <button mat-icon-button [matMenuTriggerFor]="statusMenu" title="Change status">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #statusMenu="matMenu">
+      <button mat-menu-item (click)="onStatusChange('pending')">
+        <mat-icon>schedule</mat-icon>
+        <span>Pending</span>
+      </button>
+      <button mat-menu-item (click)="onStatusChange('in-progress')">
+        <mat-icon>autorenew</mat-icon>
+        <span>In Progress</span>
+      </button>
+      <button mat-menu-item (click)="onStatusChange('completed')">
+        <mat-icon>check_circle</mat-icon>
+        <span>Completed</span>
+      </button>
+    </mat-menu>
+
+    <!-- Edit Button -->
+    <button mat-icon-button (click)="onEdit()" title="Edit task">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <!-- Delete Button -->
+    <button mat-icon-button (click)="onDelete()" title="Delete task" color="warn">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</app-card>

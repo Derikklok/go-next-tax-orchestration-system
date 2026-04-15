@@ -1,0 +1,14 @@
+<mat-card [class]="cardClass" [class.hoverable]="hoverable" [class.clickable]="clickable">
+  <mat-card-header *ngIf="title || subtitle">
+    <mat-card-title>{{ title }}</mat-card-title>
+    <mat-card-subtitle *ngIf="subtitle">{{ subtitle }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <ng-content></ng-content>
+  </mat-card-content>
+
+  <mat-card-actions *ngIf="clickable" align="end">
+    <ng-content select="[card-actions]"></ng-content>
+  </mat-card-actions>
+</mat-card>

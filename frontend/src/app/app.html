@@ -1,18 +1,103 @@
-<div>
-  <h1>Hello World!</h1>
+<div class="app-wrapper">
+  <!-- Header -->
+  <app-header [title]="title()"></app-header>
 
-  <div>
-    <h1>Button check</h1>
-    <button matButton="filled">Filled Basic</button>
-  </div>
+  <!-- Main Content -->
+  <app-page-container>
+    <!-- Error Message -->
+    <div *ngIf="error()" class="error-banner">
+      <mat-icon>error</mat-icon>
+      <span>{{ error() }}</span>
+      <button mat-icon-button (click)="error.set('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
 
-  <h2>something</h2>
-  <button mat-raised-button color="primary">click me</button>
+    <!-- Page Title -->
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">{{ title() }}</h1>
+        <p class="page-subtitle">Organize and manage your tasks efficiently</p>
+      </div>
+      <app-button
+        label="New Task"
+        icon="add"
+        (clicked)="showCreateForm.set(!showCreateForm())"
+        [color]="showCreateForm() ? 'accent' : 'primary'">
+      </app-button>
+    </div>
 
-  <div>
-    <h1>test custom component</h1>
-    <app-button label="Save"></app-button>
-  </div>
+    <!-- Create Task Form -->
+    <div *ngIf="showCreateForm()" class="create-form-container">
+      <div class="create-form">
+        <h2>Create New Task</h2>
+
+        <app-input
+          label="Task Title"
+          placeholder="Enter task title"
+          [value]="newTask().title"
+          (valueChange)="newTask.update(prev => ({ ...prev, title: $event }))"
+          [required]="true"
+          icon="title">
+        </app-input>
+
+        <app-input
+          label="Description"
+          placeholder="Enter task description"
+          type="textarea"
+          [value]="newTask().description"
+          (valueChange)="newTask.update(prev => ({ ...prev, description: $event }))"
+          [rows]="4"
+          icon="description">
+        </app-input>
+
+        <div class="form-actions">
+          <app-button
+            label="Create"
+            (clicked)="onCreateTask()"
+            [loading]="loading()"
+            [disabled]="!newTask().title.trim()">
+          </app-button>
+          <app-button
+            label="Cancel"
+            variant="stroked"
+            (clicked)="showCreateForm.set(false)">
+          </app-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading() && tasks().length === 0" class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Loading tasks...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading() && tasks().length === 0" class="empty-state">
+      <mat-icon>task_alt</mat-icon>
+      <h2>No tasks yet</h2>
+      <p>Create your first task to get started</p>
+      <app-button
+        label="Create First Task"
+        (clicked)="showCreateForm.set(true)">
+      </app-button>
+    </div>
+
+    <!-- Tasks Grid -->
+    <div *ngIf="!loading() && tasks().length > 0" class="tasks-container">
+      <div class="tasks-grid">
+        <app-task-card
+          *ngFor="let task of tasks()"
+          [task]="task"
+          (edit)="onEditTask($event)"
+          (delete)="onDeleteTask($event)"
+          (updateStatus)="onUpdateStatus($event)">
+        </app-task-card>
+      </div>
+    </div>
+  </app-page-container>
 </div>
 
 <router-outlet />
+
