@@ -74,6 +74,25 @@ docker-compose up
 
 The server will start on `http://localhost:8080`
 
+### Option 4: Run as Docker Container (Backend only)
+
+Build image:
+
+docker build -t task-backend .
+
+Run container:
+
+docker run --rm -p 8080:8080 \
+  -e APP_PORT=8080 \
+  -e DB_HOST=host.docker.internal \
+  -e DB_PORT=3306 \
+  -e DB_USER=root \
+  -e DB_PASSWORD=your_password \
+  -e DB_NAME=task_manager \
+  task-backend
+
+Note: In container environments, the backend can run without a local `.env` file because environment variables are supported directly.
+
 ## API Endpoints
 
 ### Base URL
@@ -288,6 +307,27 @@ air
   netstat -ano | findstr :8080
   taskkill /PID <PID> /F
   ```
+
+### CORS Error in Browser
+
+If frontend cannot call backend from `http://localhost:4200`, ensure you are using the latest backend build and restart the server.
+
+## Docker Compose (Recommended)
+
+From repository root:
+
+docker compose up --build
+
+This starts:
+
+- mysql (database)
+- backend (API)
+- frontend (nginx serving Angular build)
+
+URLs:
+
+- Frontend: `http://localhost:4200`
+- Backend: `http://localhost:8080`
 
 ## Future Enhancements
 

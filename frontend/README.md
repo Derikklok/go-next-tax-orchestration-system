@@ -53,6 +53,26 @@ ng build --configuration production
 
 Output files are in the `dist/` directory.
 
+## 🐳 Docker
+
+### Build Frontend Image
+
+docker build -t task-frontend .
+
+### Run Frontend Container
+
+docker run --rm -p 4200:80 task-frontend
+
+Frontend will be available at: http://localhost:4200
+
+### Full Stack with Docker Compose
+
+From repository root:
+
+docker compose up --build
+
+This starts MySQL, backend, and frontend together.
+
 ## 📁 Project Structure
 
 For a detailed guide on the project structure and components, see [FRONTEND_GUIDE.md](./FRONTEND_GUIDE.md)
@@ -93,6 +113,8 @@ For detailed component documentation, see [FRONTEND_GUIDE.md](./FRONTEND_GUIDE.m
 ## 🔌 API Integration
 
 The frontend communicates with the backend API running on `http://localhost:8080`.
+
+For Docker Compose, the browser still accesses backend via `http://localhost:8080`.
 
 ### Task Service Endpoints
 
