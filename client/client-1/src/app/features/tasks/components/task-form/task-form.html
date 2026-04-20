@@ -18,8 +18,19 @@
     }
   </div>
 
+  @if (showStatus()) {
+    <div class="form-group">
+      <label>Status</label>
+      <select formControlName="status">
+        <option value="pending">Pending</option>
+        <option value="in-progress">In Progress</option>
+        <option value="completed">Completed</option>
+      </select>
+    </div>
+  }
+
   <button type="submit">
-    Create Task
+    {{ submitLabel() }}
   </button>
 
 </form>

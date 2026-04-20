@@ -1,0 +1,14 @@
+<section class="task-edit-page">
+  <div class="page-header">
+    <h1>Edit Task</h1>
+  </div>
+
+  @if (task()) {
+    <app-task-form
+      [initialValue]="task()!"
+      [showStatus]="true"
+      submitLabel="Update Task"
+      (submitted)="onUpdateTask($event)"
+    />
+  }
+</section>
