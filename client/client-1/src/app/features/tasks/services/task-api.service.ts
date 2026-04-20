@@ -36,4 +36,8 @@ export class TaskApiService {
   updateTask(id: number, payload: UpdateTaskRequest) {
     return this.http.put<ApiResponse<Task>>(`${this.baseUrl}/${id}`, payload);
   }
+
+  deleteTask(id: number) {
+  return this.http.delete<{ message: string }>(`${this.baseUrl}/${id}`);
+}
 }

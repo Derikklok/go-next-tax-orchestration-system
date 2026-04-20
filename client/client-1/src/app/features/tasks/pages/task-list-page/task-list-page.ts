@@ -30,4 +30,20 @@ export class TaskListPage {
       }
     })
   }
+
+  onDeleteTask(id: number): void {
+  const confirmed = confirm('Are you sure you want to delete this task?');
+
+  if (!confirmed) return;
+
+  this.taskApi.deleteTask(id).subscribe({
+    next: () => {
+      // Remove task locally (no reload)
+      this.tasks.update(tasks => tasks.filter(t => t.id !== id));
+
+      // Optional: update total
+      this.total.update(total => total - 1);
+    }
+  });
+}
 }

@@ -1,9 +1,23 @@
 <div class="task-card">
   <div class="task-card__header">
     <h3>{{ task().title }}</h3>
-    <span class="status">{{ task().status }}</span>
+    <span
+      class="status"
+      [class.status--pending]="task().status === 'pending'"
+      [class.status--in-progress]="task().status === 'in-progress'"
+      [class.status--completed]="task().status === 'completed'"
+    >
+      {{ task().status }}
+    </span>
   </div>
 
-  <p>{{ task().description }}</p>
-  <a [routerLink]="['/tasks', task().id, 'edit']"> Edit </a>
+  <p class="task-description">{{ task().description }}</p>
+
+  <div class="actions">
+    <a class="link-btn" [routerLink]="['/tasks', task().id, 'edit']"> Edit </a>
+
+    <button type="button" class="danger-btn" (click)="onDelete()">
+      Delete
+    </button>
+  </div>
 </div>

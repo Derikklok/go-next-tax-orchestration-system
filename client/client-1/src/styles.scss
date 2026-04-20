@@ -1,8 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --blue-900: #0a2342;
+    --blue-800: #15457b;
+    --blue-700: #1f63b8;
+    --blue-500: #2f80ed;
+    --blue-100: #e8f1fd;
+    --surface: #ffffff;
+    --surface-muted: #f6f9fc;
+    --border: #d7e2ef;
+    --text-primary: #14263f;
+    --text-secondary: #4c6077;
+    --danger: #c93f4a;
+    --focus-ring: rgba(47, 128, 237, 0.25);
+    --shadow-soft: 0 10px 24px rgba(20, 38, 63, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 html,
-body{
-    margin: 1rem;
-    background-color: rgb(207, 209, 231);
-    color: rgb(24, 24, 24);
-    border-color: white;
+body {
+    margin: 0;
+    min-height: 100%;
+    font-family: 'Amazon Ember', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background:
+        radial-gradient(circle at 10% -5%, #f2f8ff 0%, rgba(242, 248, 255, 0) 34%),
+        linear-gradient(180deg, #eef4fb 0%, #f8fbff 100%);
+    color: var(--text-primary);
+}
+
+a {
+    color: var(--blue-700);
 }

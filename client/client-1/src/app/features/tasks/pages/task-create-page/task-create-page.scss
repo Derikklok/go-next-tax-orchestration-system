@@ -1,0 +1,22 @@
+.task-create-page {
+	display: grid;
+	gap: 1rem;
+}
+
+.page-header {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 14px;
+	padding: 1rem 1.1rem;
+	box-shadow: var(--shadow-soft);
+
+	h1 {
+		margin: 0;
+		font-size: clamp(1.2rem, 2.3vw, 1.5rem);
+	}
+
+	p {
+		margin: 0.4rem 0 0;
+		color: var(--text-secondary);
+	}
+}

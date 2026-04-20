@@ -1,22 +1,23 @@
-
 <div class="task-list-page">
-
-    <div class="page-header">
-        <div>
-            <h1>Details about total tasks</h1>
-            <p>Total of {{total()}} tasks retrieved.</p>
-        </div>
-
-        <a routerLink="/tasks/create" class="create-btn">
-        Create Task
-    </a>
+  <div class="page-header">
+    <div class="page-title">
+      <h1>Task Dashboard</h1>
+      <p>Total of {{ total() }} tasks retrieved.</p>
     </div>
 
+    <a routerLink="/tasks/create" class="create-btn"> Create Task </a>
+  </div>
+
+  @if (tasks().length === 0) {
+    <div class="empty-state">
+      <h2>No tasks yet</h2>
+      <p>Create your first task to begin tracking work.</p>
+    </div>
+  } @else {
     <div class="task-grid">
-        @for (task of tasks(); track task.id) {
-            <app-task-card [task]="task"/>
-        }
+      @for (task of tasks(); track task.id) {
+        <app-task-card [task]="task" (delete)="onDeleteTask($event)" />
+      }
     </div>
-    
-    
+  }
 </div>
