@@ -1,20 +1,64 @@
-import { useQuery } from "@tanstack/react-query";
-import { getTasks } from "../api/task.api";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  createTask,
+  deleteTask,
+  getTaskById,
+  getTasks,
+  updateTask,
+} from "../api/task.api";
+import { TaskInput } from "../schemas/task.schema";
+import { Task } from "../types/task.types";
+
+export const taskQueryKeys = {
+  all: ["tasks"] as const,
+  detail: (id: number) => ["tasks", id] as const,
+};
 
 export const useTasks = () => {
   return useQuery({
-    queryKey: ["tasks"],
+    queryKey: taskQueryKeys.all,
     queryFn: getTasks,
   });
 };
 
+export const useTask = (id: number, enabled = true) => {
+  return useQuery({
+    queryKey: taskQueryKeys.detail(id),
+    queryFn: () => getTaskById(id),
+    enabled,
+  });
+};
 
-/*
-useQuery: This is a TanStack Query hook that manages the lifecycle of your request (loading, success, error, caching).
-queryKey: ["tasks"]: Think of this as the Unique ID for your data. When you call this in a component, React Query stores the data under the label ["tasks"]. 
+export const useCreateTask = () => {
+  const queryClient = useQueryClient();
 
-If you update a task later, you can tell React Query: "Invalidate the ['tasks'] key," and it will automatically re-fetch the fresh data for you.
+  return useMutation({
+    mutationFn: (data: TaskInput) => createTask(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: taskQueryKeys.all });
+    },
+  });
+};
 
-queryFn: getTasks: This tells React Query which Service function to call when it needs the data. Notice we are calling the function name getTasks, not the axios instance directly.
+export const useUpdateTask = () => {
+  const queryClient = useQueryClient();
 
-*/
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: TaskInput }) => updateTask(id, data),
+    onSuccess: (updatedTask: Task) => {
+      queryClient.setQueryData(taskQueryKeys.detail(updatedTask.id), updatedTask);
+      queryClient.invalidateQueries({ queryKey: taskQueryKeys.all });
+    },
+  });
+};
+
+export const useDeleteTask = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: (id: number) => deleteTask(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: taskQueryKeys.all });
+    },
+  });
+};

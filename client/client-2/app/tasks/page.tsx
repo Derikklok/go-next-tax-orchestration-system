@@ -2,7 +2,7 @@ import { TaskList } from "@/features/tasks/components/TaskList";
 
 const TaskPage = () => {
   return (
-    <main className="mx-auto w-full max-w-4xl px-4 py-8 sm:py-10">
+    <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:py-10 lg:px-6">
       <div className="mb-8 space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
           Dashboard
