@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import TodoList from "./todo-list";
 
 const About = () => {
   return (
@@ -30,6 +31,10 @@ const About = () => {
             </Button>
           </CardFooter>
         </Card>
+      </div>
+
+      <div>
+        <TodoList/>
       </div>
     </div>
   );
