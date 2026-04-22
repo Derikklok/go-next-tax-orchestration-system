@@ -1,7 +1,7 @@
-
 type Task = {
-  id: string | number;
+  id: number;
   title: string;
+  description: string;
 };
 
 async function getTasks(): Promise<{ data: Task[] }> {
@@ -10,8 +10,7 @@ async function getTasks(): Promise<{ data: Task[] }> {
 }
 
 export default async function TodoList() {
-
-    const {data:tasks} = await getTasks();
+  const { data: tasks } = await getTasks();
 
   return (
     <div>
@@ -19,9 +18,9 @@ export default async function TodoList() {
 
       <div>
         <ul>
-            {tasks.map((task) => (
-                <li key={task.id}>{task.title}</li>
-            ))}
+          {tasks.map((task) => (
+            <li key={task.id}>{task.title}</li>
+          ))}
         </ul>
       </div>
     </div>
